@@ -4,7 +4,6 @@ map180 is a Go (golang) library for drawing SVG maps with markers on EPSG:3857.
 
 * It handles maps that cross the 180 meridian
 * Allows high zoom level data in a specified region.  
-* Land and lake layer queries are cached for  speed.
 
 Once you have a database with the map data loaded (see below) drawing a map is as simple as:
 
@@ -44,3 +43,10 @@ The assembled New Zealand data set uses data sourced from:
 
 * Natural Earth - http://www.naturalearthdata.com/
 * the LINZ Data Service http://data.linz.govt.nz which is licensed by LINZ for re-use under the Creative Commons Attribution 3.0 New Zealand licence.
+
+
+## Adding Roads
+
+```
+shp2pgsql -d -s 4326 -I nz-road-centrelines-topo-1500k.shp public.nztopo_500k_road_centrelines | psql -h localhost fits postgres
+```
